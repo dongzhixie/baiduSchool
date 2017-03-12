@@ -1,0 +1,163 @@
+/**********通用样式*************/
+body{
+	margin:0;
+	padding: 0;
+	background: #DEDEDE;
+	font-family:Arial,Helvetica,sans-serif;font-size: 14px;
+	line-height: 1.5em;
+	box-sizing: border-box;
+	width:1400px;
+}
+ul{
+	list-style: none;
+}
+/* ************************************* */
+nav{
+	background: #333;
+	height:60px;
+	padding:0 50px;
+	margin-bottom: 15px;
+}
+
+nav>img{
+	display:inline-block;
+	margin-top:10px;
+}
+nav>ul{
+	margin-top: 0;
+	float:right;
+}
+nav>ul li{
+	line-height:60px;
+	float:left;
+	color:#fff;
+	background:#333;
+	font-weight: bold;
+	padding-left:10px;
+
+}
+nav>ul>li:last-child{color:#A2ADAF;}
+/* ***主体内容*** */
+section>div.main{
+	box-sizing: border-box;
+	width: 1270px;
+	padding:15px 10px;
+	margin:0 auto;
+	margin-bottom: 30px;
+	background: #fff;
+}
+section>div.main h4{
+	color:#707176;
+	font-weight: normal;
+}
+section>div.main>p:nth-of-type(1){
+	text-indent: 2em;
+}
+section>div.main:nth-of-type(2) div{
+	width:110px;
+	padding:8px 5px;
+	border:1px solid #000;
+	text-align: center;
+	margin-bottom:10px;
+	margin-left:40px;
+}
+/*****第三个div：table*******/
+section>div.main:nth-of-type(3) h3{color:#6C7572;}
+section>div.main:nth-of-type(3) ul li{
+	font-weight: bold;
+	line-height: 25px;
+}
+#table1{
+	width:100%;
+	border-collapse: collapse;
+	border:1px solid #D8D8D8;
+}
+#table1 th,#table1 td{
+	text-align: left;
+	padding-left: 5px;
+}
+#table1>thead th{
+	color:#fff;
+	background:#333;
+}
+#table1>tfoot th{
+	background:#ccc;
+}
+#table1>tfoot td{
+	background:#ccc;
+}
+/***form表单**/
+section>div.main:nth-child(4)>p:first-child{
+	font-weight: bold;
+	font-size:15px;
+}
+#form1{
+	margin-left: 300px;
+	font-size:12px;
+}
+#form1 div{
+	margin-bottom: 20px;
+}
+#form1 label{
+	display:inline-block;
+	width:100px;
+	margin-right: 6px;
+	text-align: right;
+}
+#form1>div.pwd>input:nth-child(2){
+	margin-bottom: 8px;
+}
+#form1>div.desc>label{
+	vertical-align: top;
+}
+#form1>div.email input,#form1>div.pwd input{
+	width:120px;
+}
+#form1 span{
+	 display: inline-block;
+	 margin-left: 109px;
+	 color:#87939F;
+}
+#btn{
+	width:100%;
+	background: #3355D0;
+	border:0;
+	color:#fff;
+	font-size:16px;
+	padding:10px 0;
+	border-radius: 10px;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
