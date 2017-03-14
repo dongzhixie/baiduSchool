@@ -41,7 +41,6 @@ function getData() {
   
   var data = [];
   var source = document.querySelectorAll("#source li");
-  console.log(source);
 
   /*
   data = [
@@ -55,7 +54,6 @@ function getData() {
   	list.push(source[i].innerText.split("空气质量："));
   	data.push(list);
   }
-  console.log(data);
   return data;
 
 }
@@ -69,6 +67,7 @@ function sortAqiData(data) {
 	data.sort(function(a,b){
 		return parseInt(a[0][1])-parseInt(b[0][1]);
 	});
+	return data;
 }
 
 /**
@@ -78,15 +77,15 @@ function sortAqiData(data) {
  */
 function render(data) {
 	var html = "";
+	console.log(data);
 	for(var i=0;i<data.length;i++){
-		html+=`<li>第${i+1}名：${data[i][0]}空气质量：<b>${data[i][1]}</b></li>`;
+		html+=`<li>第${i+1}名：${data[i][0][0]}空气质量：<b>${data[i][0][1]}</b></li>`;
 	}
 	resort.innerHTML = html;
 }
 
 function btnHandle() {
   var aqiData = getData();
-  console.log(aqiData);
   aqiData = sortAqiData(aqiData);
   render(aqiData);
 }
