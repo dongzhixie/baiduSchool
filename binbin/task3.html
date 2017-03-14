@@ -2,6 +2,7 @@
 <html>
   <head>
     <meta charset="utf-8">
+    <title>IFE JavaScript Task 03</title>
   </head>
 <body>
 
@@ -40,6 +41,7 @@ function getData() {
   
   var data = [];
   var source = document.querySelectorAll("#source li");
+  console.log(source);
 
   /*
   data = [
@@ -48,12 +50,12 @@ function getData() {
     ……
   ]
   */
-  for(let i=0;i<source.length;i++){
+  for(var i=0;i<source.length;i++){
   	var list = [];
   	list.push(source[i].innerText.split("空气质量："));
   	data.push(list);
   }
-
+  console.log(data);
   return data;
 
 }
@@ -65,7 +67,7 @@ function getData() {
  */
 function sortAqiData(data) {
 	data.sort(function(a,b){
-		return parseInt(a[1])-parseInt(b[1]);
+		return parseInt(a[0][1])-parseInt(b[0][1]);
 	});
 }
 
@@ -75,7 +77,6 @@ function sortAqiData(data) {
  * 格式见ul中的注释的部分
  */
 function render(data) {
-	console.log(data);
 	var html = "";
 	for(var i=0;i<data.length;i++){
 		html+=`<li>第${i+1}名：${data[i][0]}空气质量：<b>${data[i][1]}</b></li>`;
@@ -85,6 +86,7 @@ function render(data) {
 
 function btnHandle() {
   var aqiData = getData();
+  console.log(aqiData);
   aqiData = sortAqiData(aqiData);
   render(aqiData);
 }
@@ -92,7 +94,7 @@ function btnHandle() {
 function init() {
 
   // 在这下面给sort-btn绑定一个点击事件，点击时触发btnHandle函数
-  document.querySelector("#sort-btn").onclick = btnHandle;
+  document.getElementById("sort-btn").onclick = btnHandle;
 
 }
 
