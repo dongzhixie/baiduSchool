@@ -1,0 +1,94 @@
+<!DOCTYPE>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>IFE JavaScript Task 04</title>
+    <style>
+    	.clear{
+    		clear: both;
+    	}
+    	ul{
+    		list-style: none;
+    		float:left;
+    	}
+    	ul li{
+    		border-radius: 4px;
+    		float:left;
+    		display: inline-block;
+    		padding:15px;
+    		color:#fff;
+    		background: red;
+    		margin-right: 10px;
+    	}
+
+    </style>
+  </head>
+<body>
+	
+	<!-- 输入框和按钮功能 -->
+	<input type="text">
+	<button id="imLeft">左侧入</button>
+	<button id="imRight">右侧入</button>
+	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+	<button id="removeLeft">左侧出</button>
+	<button id="removeRight">右侧出</button>
+	<div class="clear"></div>
+
+	<!-- 红色背景的数字队列 -->
+	<ul id="list">
+		<li id="10">10</li>
+		<li id="3">3</li>
+		<li id="7">7</li>
+		<li id="12">12</li>
+		<li id="11">11</li>
+		<li id="30">30</li>
+	</ul>
+<script>
+		
+	// 定义正则表达式
+	function regTest(value){
+		var reg = /^\d{1,6}$/;
+		return reg.test(value);
+	}
+	// 左侧入
+	imLeft.onclick = function(){
+		// 获取input的value
+		var value = document.querySelector("input").value;
+		if(regTest(value)){
+			var li = document.createElement("li");
+			li.id = value;
+			li.innerText = value;
+			var firstChild = document.getElementById("list").children[0];
+			list.insertBefore(li,firstChild);
+		}else{
+			alert("请输入1~6位数字");
+		}
+	}
+
+	//右侧入
+	imRight.onclick = function(){
+		// 获取input的value
+		var value = document.querySelector("input").value;
+		if(regTest(value)){
+			var li = document.createElement("li");
+			li.id = value;
+			li.innerText = value;
+			list.appendChild(li);
+		}else{
+			alert("请输入1~6位数字");
+		}
+	}
+
+	//左侧出
+	removeLeft.onclick = function(){
+		list.removeChild(list.children[0]);
+	}
+
+	//右侧出
+	removeRight.onclick = function(){
+		var list = document.getElementById("list");
+		list.removeChild(list.children[list.children.length-1]);
+	}
+</script>
+</body>
+</html>
