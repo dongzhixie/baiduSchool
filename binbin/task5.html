@@ -1,0 +1,155 @@
+<!DOCTYPE>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>IFE JavaScript Task 05</title>
+    <style>
+    	.clear{
+    		clear: both;
+    	}
+
+    	ul{
+    		list-style: none;
+    		float:left;
+    	}
+    	#list li{
+    		border-radius: 4px;
+    		float:left;
+    		display: inline-block;
+    		padding:15px;
+    		color:#fff;
+    		background: red;
+    		margin-right: 10px;
+    	}
+		#arrSort li{
+			float:left;
+			margin-right: 10px;
+			display: inline-block;
+			background: red;
+			width:20px;
+		}
+    </style>
+  </head>
+<body>
+	
+	<!-- 输入框和按钮功能 -->
+	<input type="text">
+	<button id="imLeft">左侧入</button>
+	<button id="imRight">右侧入</button>
+	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+	<button id="removeLeft">左侧出</button>
+	<button id="removeRight">右侧出</button>
+	<div class="clear"></div>
+
+	<!-- 红色背景的数字队列 -->
+	<ul id="list">
+		<li id="10">10</li>
+		<li id="3">3</li>
+		<li id="7">7</li>
+		<li id="12">12</li>
+		<li id="11">11</li>
+		<li id="30">20</li>
+		<li id="30">50</li>
+		<li id="30">30</li>
+	</ul>
+	<div class="clear"></div>
+
+	<ul id="arrSort">
+		<!-- 在这里实现排序完成的可视化 -->
+	</ul>
+<script>
+	/*，模拟一个队列，队列的每个元素是一个数字，初始队列为空
+有一个input输入框，以及4个操作按钮
+
+点击"左侧入"，将input中输入的数字从左侧插入队列中；
+点击"右侧入"，将input中输入的数字从右侧插入队列中；
+点击"左侧出"，读取并删除队列左侧第一个元素，并弹窗显示元素中数值；
+点击"右侧出"，读取并删除队列又侧第一个元素，并弹窗显示元素中数值；
+点击队列中任何一个元素，则该元素会被从队列中删除*/
+	
+	// 定义正则表达式
+	function regTest(value){
+		var reg = /^\d{1,3}$/;
+		return reg.test(value);
+	}
+	// 左侧入
+	imLeft.onclick = function(){
+		// 获取input的value
+		var value = document.querySelector("input").value;
+		if(regTest(value)){
+			var li = document.createElement("li");
+			li.id = value;
+			li.innerText = value;
+			var firstChild = document.getElementById("list").children[0];
+			list.insertBefore(li,firstChild);
+			SORT();
+		}else{
+			alert("请输入100以内的数字");
+		}
+	}
+
+	//右侧入
+	imRight.onclick = function(){
+		// 获取input的value
+		var value = document.querySelector("input").value;
+		if(regTest(value)){
+			var li = document.createElement("li");
+			li.id = value;
+			li.innerText = value;
+			list.appendChild(li);
+			SORT();
+		}else{
+			alert("请输入1~6位数字");
+		}
+	}
+
+	//左侧出
+	removeLeft.onclick = function(){
+		list.removeChild(list.children[0]);
+		SORT();
+	}
+
+	//右侧出
+	removeRight.onclick = function(){
+		var list = document.getElementById("list");
+		list.removeChild(list.children[list.children.length-1]);
+		SORT();
+	}
+
+	/****task5****/
+	/*
+基于上一任务
+限制输入的数字在10-100
+队列元素数量最多限制为60个，当超过60个时，添加元素时alert出提示
+队列展现方式变化如图，直接用高度表示数字大小
+实现一个简单的排序功能，如冒泡排序（不限制具体算法），用可视化的方法表达出来，参考见下方参考资料*/
+
+	//task05
+	
+	SORT();
+	function SORT(){
+		//创建一个存储页面数字的数组
+		var arr = [];
+		var list = document.getElementById("list");
+		for(var i=0;i<list.children.length;i++){
+			arr.push(list.children[i].innerText);
+		}
+		//对数组进行排序
+		arr.sort(function(a,b){return a-b});
+		//将排序完成后的数组内容插入arrSort中
+		var arrSort = document.getElementById("arrSort");
+		//判断arrSort数组是否有元素&&innerHTML=""
+		if(arrSort.children.length!=0){
+				arrSort.innerHTML = "";
+			}
+		for(var i=0;i<arr.length;i++){
+			var li = document.createElement("li");
+			li.setAttribute("style",`height:${arr[i]*2}px;margin-top:${200-arr[i]*2}px`);
+			li.innerText = arr[i];
+			arrSort.appendChild(li);
+		}
+	}
+
+</script>
+</body>
+</html>
