@@ -1,0 +1,128 @@
+<!DOCTYPE>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>IFE JavaScript Task 06</title>
+    <style>
+    	.clear{
+    		clear: both;
+    	}
+    	ul{
+    		list-style: none;
+    		float:left;
+    	}
+    	ul li{
+    		border-radius: 4px;
+    		float:left;
+    		display: inline-block;
+    		padding:15px;
+    		color:#fff;
+    		background: red;
+    		margin-right: 10px;
+    	}
+
+    </style>
+  </head>
+<body>
+	
+	<!-- 输入框-->
+	<textarea id="input" cols="30" rows="10" placeholder="可以一次性的输入多个中英文内容，用回车，逗号，空格作为不同内容的分割"></textarea>
+	<!--查询框-->
+	<input type="text" id="query" placeholder="输入你要查询的内容">
+	<!--查询-->
+	<button id="queryDo">查询</button>
+	<!--插入/删除-->
+	<button id="imLeft">左侧入</button>
+	<button id="imRight">右侧入</button>
+	<button id="removeLeft">左侧出</button>
+	<button id="removeRight">右侧出</button>
+	<div class="clear"></div>
+
+	<!-- 红色背景的数字队列 -->
+	<ul id="list">
+		
+	</ul>
+<script>
+	/*，模拟一个队列，队列的每个元素是一个数字，初始队列为空
+有一个input输入框，以及4个操作按钮
+
+点击"左侧入"，将input中输入的数字从左侧插入队列中；
+点击"右侧入"，将input中输入的数字从右侧插入队列中；
+点击"左侧出"，读取并删除队列左侧第一个元素，并弹窗显示元素中数值；
+点击"右侧出"，读取并删除队列又侧第一个元素，并弹窗显示元素中数值；
+点击队列中任何一个元素，则该元素会被从队列中删除*/
+
+
+	// 左侧入
+	imLeft.onclick = function(){
+		// 获取input的value
+		var value = document.querySelector("#input").value;
+		//将输入的内容保存在arr中
+		var arr = value.replace(/\s+|，+/g,",").split(",");
+		//将arr的内容unshift到myArr中,同时更新到页面中
+		for(var i=0;i<arr.length;i++){
+			console.log(arr[i])
+			myArr.unshift(arr[i]);
+			//将内容更新到页面中
+			var li = document.createElement("li");
+			li.id = arr[i];
+			li.innerText = arr[i];
+			var firstChild = document.getElementById("list").children[0];
+			list.insertBefore(li,firstChild);
+		}
+	}
+
+	//右侧入
+	imRight.onclick = function(){
+		// 获取input的value
+		var value = document.querySelector("#input").value;
+		//将输入的内容保存在arr中
+		var arr = value.replace(/\s+|，+/g,",").split(",");
+		//将arr的内容unshift到myArr中,同时更新到页面中
+		for(var i=0;i<arr.length;i++){
+			myArr.push(arr[i]);
+			//将内容更新到页面中
+			var li = document.createElement("li");
+			li.id = arr[i];
+			li.innerText = arr[i];
+			list.appendChild(li);
+		}
+	}
+
+	//左侧出
+	removeLeft.onclick = function(){
+		list.removeChild(list.children[0]);
+		//将添加的值保存在数组中
+		myArr.shift();
+	}
+
+	//右侧出
+	removeRight.onclick = function(){
+		var list = document.getElementById("list");
+		list.removeChild(list.children[list.children.length-1]);
+		//将添加的值保存在数组中
+		myArr.pop();
+	}
+
+	//任务六
+	/*
+基于任务四进行升级
+将新元素输入框从input改为textarea
+允许一次批量输入多个内容，格式可以为数字、中文、英文等，可以通过用回车，逗号（全角半角均可），顿号，空格（全角半角、Tab等均可）等符号作为不同内容的间隔
+增加一个查询文本输入框，和一个查询按钮，当点击查询时，将查询词在各个元素内容中做模糊匹配，将匹配到的内容进行特殊标识，如文字颜色等。举例，内容中有abcd，查询词为ab或bc，则该内容需要标识
+	*/
+	//添加一个保存页面队列数据的数组
+	var myArr = [];
+	/*为查询btn绑定事件*/
+	queryDo.onclick = function(){
+		var value = query.value;
+		for(var i=0;i<myArr.length;i++){
+			if(myArr[i].match(value)){
+				document.getElementById(`${myArr[i]}`).style.background = "#E5F3BE";
+			}
+		}
+	}
+
+</script>
+</body>
+</html>
