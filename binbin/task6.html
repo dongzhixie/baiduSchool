@@ -55,45 +55,36 @@
 
 	// 左侧入
 	imLeft.onclick = function(){
-		// 获取input的value
-		var value = document.querySelector("#input").value;
 		//将输入的内容保存在arr中
-		var arr = value.replace(/\s+|，+/g,",").split(",");
+		var arr = document.querySelector("#input").value.replace(/\s+|，+/g,",").split(",");
+	
 		//将arr的内容unshift到myArr中,同时更新到页面中
-		for(var i=0;i<arr.length;i++){
-			console.log(arr[i])
-			myArr.unshift(arr[i]);
-			//将内容更新到页面中
+		arr.forEach(function(current){
 			var li = document.createElement("li");
-			li.id = arr[i];
-			li.innerText = arr[i];
+			li.innerText = current;
 			var firstChild = document.getElementById("list").children[0];
 			list.insertBefore(li,firstChild);
-		}
+		})
 	}
 
 	//右侧入
 	imRight.onclick = function(){
-		// 获取input的value
-		var value = document.querySelector("#input").value;
 		//将输入的内容保存在arr中
-		var arr = value.replace(/\s+|，+/g,",").split(",");
+		var arr = document.querySelector("#input").value.replace(/\s+|，+/g,",").split(",");
 		//将arr的内容unshift到myArr中,同时更新到页面中
-		for(var i=0;i<arr.length;i++){
-			myArr.push(arr[i]);
+		arr.forEach(function(current){
 			//将内容更新到页面中
 			var li = document.createElement("li");
-			li.id = arr[i];
-			li.innerText = arr[i];
+			li.innerText = current;
 			list.appendChild(li);
-		}
+
+		})
 	}
 
 	//左侧出
 	removeLeft.onclick = function(){
 		list.removeChild(list.children[0]);
 		//将添加的值保存在数组中
-		myArr.shift();
 	}
 
 	//右侧出
@@ -101,7 +92,6 @@
 		var list = document.getElementById("list");
 		list.removeChild(list.children[list.children.length-1]);
 		//将添加的值保存在数组中
-		myArr.pop();
 	}
 
 	//任务六
@@ -112,17 +102,15 @@
 增加一个查询文本输入框，和一个查询按钮，当点击查询时，将查询词在各个元素内容中做模糊匹配，将匹配到的内容进行特殊标识，如文字颜色等。举例，内容中有abcd，查询词为ab或bc，则该内容需要标识
 	*/
 	//添加一个保存页面队列数据的数组
-	var myArr = [];
 	/*为查询btn绑定事件*/
 	queryDo.onclick = function(){
-		var value = query.value;
-		for(var i=0;i<myArr.length;i++){
-			if(myArr[i].match(value)){
-				document.getElementById(`${myArr[i]}`).style.background = "#E5F3BE";
+		var list = document.querySelectorAll("#list li");
+		list.forEach(function(current){
+			if(current.innerText.indexOf(query.value)!=-1){
+				current.style.background = "#E5F3BE";
 			}
-		}
+		});
 	}
-
 </script>
 </body>
 </html>
